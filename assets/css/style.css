@@ -1,13 +1,28 @@
 * {
+/* *::before,
+*::after { */
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: yellow;
+}
+
+body.correct {
+  background-color: limegreen;
+}
+
+body.wrong {
+  background-color: red;
 }
 
 h1 {
   text-align: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 48px;
-  color: rgba(200, 80, 80, .8);
+  color: rgba(200, 80, 80, 0.8);
 }
 
 nav {
@@ -18,3 +33,19 @@ nav {
   color: rgba(170, 140, 150, 0.9);
 }
 
+.container {
+  font-size: 36px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.container button {
+  font-size: 20px;
+  width: 100%;
+  text-align: left;
+}
