@@ -43,7 +43,7 @@ nav .timer-box {
 #high-scores {
   color: rgb(32, 29, 29);
   box-shadow: rgb(26, 25, 25) 7px 7px;
-  padding: 5px;
+  /* padding: 5px; */
   background-color: grey;
 }
 

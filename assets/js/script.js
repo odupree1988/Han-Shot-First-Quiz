@@ -51,6 +51,7 @@ function showNextQuestion() {
       restartBtnEl.style.display = "block";
       return highScore();
     }
+    startTimer();
 
     document.body.classList.remove("correct");
     document.body.classList.remove("wrong");
@@ -68,7 +69,7 @@ function showNextQuestion() {
       button.textContent = currentQuestion.answers[i];
       answerEl.appendChild(button);
     }
-  }, 3000);
+  }, 2500);
 }
 
 function highScore() {
@@ -109,7 +110,6 @@ newHighScore();
 
 startBtnEl.addEventListener("click", function () {
   showNextQuestion();
-  startTimer();
   startBtnEl.style.display = "none";
 });
 
