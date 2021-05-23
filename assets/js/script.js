@@ -9,7 +9,6 @@ var startBtnEl = document.getElementById("start-btn");
 var restartBtnEl = document.getElementById("restart");
 var loadName = localStorage.getItem("Name");
 var loadScore = localStorage.getItem("Score");
-var testTimer;
 var currentQuestionIndex = 0;
 var score = 0;
 var initial = "";
@@ -17,13 +16,13 @@ var timeLeft = 120;
 
 var questionsArray = [
   {
-    question: "question1",
-    answers: ["answer1", "answer2", "answer3", "answer4"],
+    question: "What color is Luke Skywalkers Lightsaber?",
+    answers: ["Green", "Red", "Blue", "Purple"],
     correctAnswer: 0,
   },
   {
-    question: "question2",
-    answers: ["answer1", "answer2", "answer3", "answer4"],
+    question: "What is the name of the planet that Qui-Gon first discovers Annakin Skywalker?",
+    answers: ["Naboo", "Tatooine", "Mustafar", "Geonosis"],
     correctAnswer: 1,
   },
   {
@@ -51,13 +50,12 @@ function showNextQuestion() {
       restartBtnEl.style.display = "block";
       return highScore();
     }
-    startTimer();
 
     document.body.classList.remove("correct");
     document.body.classList.remove("wrong");
 
     var currentQuestion = questionsArray[currentQuestionIndex];
-    questionEl.className = "test-questions"
+    questionEl.className = "test-questions";
     questionEl.textContent = currentQuestion.question;
 
     answerEl.innerHTML = "";
@@ -69,33 +67,41 @@ function showNextQuestion() {
       button.textContent = currentQuestion.answers[i];
       answerEl.appendChild(button);
     }
-  }, 2500);
+  }, 2000);
 }
 
 function highScore() {
-  console.log("show high score");
+  clearInterval(testTimer);
   alert("You got " + score + " questions correct!");
   initial = prompt("Enter your initials");
-  clearInterval(testTimer);
-  if (score > loadScore) {
-    saveName();
-    saveScore();
-    newHighScore();
+  if (!initial) {
+    alert("You didn't enter your initials!")
+    highScore()
   } else {
-    return;
+    if (score > loadScore) {
+      saveName();
+      saveScore();
+      newHighScore();
+    } else {
+      return;
+    }
   }
 }
 
 function checkAnswer(event) {
+  console.log(event)
   var selectedAnswer = event.target.getAttribute("data-index");
   var answer = questionsArray[currentQuestionIndex].correctAnswer;
   if (selectedAnswer == answer) {
     score++;
     document.body.classList.add("correct");
+    event.target.style.backgroundColor = "green"
   } else {
     timeLeft -= 20;
     document.body.classList.add("wrong");
+    event.target.style.backgroundColor = "red"
   }
+  // questionEl.classList.add("background-green")
   // setTimeout(function () {
   //   document.body.classList.remove("correct");
   //   document.body.classList.remove("wrong");
@@ -110,6 +116,7 @@ newHighScore();
 
 startBtnEl.addEventListener("click", function () {
   showNextQuestion();
+  startTimer();
   startBtnEl.style.display = "none";
 });
 
