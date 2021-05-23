@@ -6,9 +6,13 @@
 var answerEl = document.getElementById("btn-answers");
 var questionEl = document.getElementById("question");
 var startBtnEl = document.getElementById("start-btn");
+var restartBtnEl = document.getElementById("restart");
+var loadName = localStorage.getItem("Name");
+var loadScore = localStorage.getItem("Score");
 var testTimer;
 var currentQuestionIndex = 0;
 var score = 0;
+var initial = "";
 var timeLeft = 120;
 
 var questionsArray = [
@@ -27,19 +31,32 @@ var questionsArray = [
     answers: ["answer1", "answer2", "answer3", "answer4"],
     correctAnswer: 3,
   },
+  {
+    question: "question4",
+    answers: ["answer1", "answer2", "answer3", "answer4"],
+    correctAnswer: 1,
+  },
+  {
+    question: "question5",
+    answers: ["answer1", "answer2", "answer3", "answer4"],
+    correctAnswer: 2,
+  },
 ];
+
+restartBtnEl.style.display = "none";
 
 function showNextQuestion() {
   setTimeout(function () {
     if (currentQuestionIndex > questionsArray.length - 1) {
-      highScore();
-      return;
+      restartBtnEl.style.display = "block";
+      return highScore();
     }
 
     document.body.classList.remove("correct");
     document.body.classList.remove("wrong");
 
     var currentQuestion = questionsArray[currentQuestionIndex];
+    questionEl.className = "test-questions"
     questionEl.textContent = currentQuestion.question;
 
     answerEl.innerHTML = "";
@@ -51,13 +68,21 @@ function showNextQuestion() {
       button.textContent = currentQuestion.answers[i];
       answerEl.appendChild(button);
     }
-  }, 1000);
+  }, 3000);
 }
 
 function highScore() {
   console.log("show high score");
   alert("You got " + score + " questions correct!");
+  initial = prompt("Enter your initials");
   clearInterval(testTimer);
+  if (score > loadScore) {
+    saveName();
+    saveScore();
+    newHighScore();
+  } else {
+    return;
+  }
 }
 
 function checkAnswer(event) {
@@ -80,10 +105,23 @@ function checkAnswer(event) {
   showNextQuestion();
 }
 
+newHighScore();
+
 startBtnEl.addEventListener("click", function () {
   showNextQuestion();
   startTimer();
   startBtnEl.style.display = "none";
+});
+
+restartBtnEl.addEventListener("click", function () {
+  currentQuestionIndex = 0;
+  timeLeft = 120;
+  restartBtnEl.style.display = "none";
+  loadName = localStorage.getItem("Name");
+  loadScore = localStorage.getItem("Score");
+  newHighScore();
+  showNextQuestion();
+  startTimer();
 });
 // run this timer once startQuiz is initiated
 
@@ -100,6 +138,17 @@ function startTimer() {
   }, 1000);
 }
 
-// var subtractTime = setInterval(function () {
-//   if (olEl)
-// }
+function saveName() {
+  localStorage.setItem("Name", initial);
+}
+function saveScore() {
+  localStorage.setItem("Score", JSON.stringify(score));
+}
+
+function newHighScore() {
+  if (loadName === null && loadScore === null) {
+    return;
+  }
+  document.getElementById("high-scores").innerHTML =
+    "Current High Score: " + loadName + " - " + loadScore;
+}

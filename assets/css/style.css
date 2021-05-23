@@ -1,13 +1,11 @@
 * {
-/* *::before,
-*::after { */
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
 body {
-  background-color: yellow;
+  background-color: rgba(255, 255, 0, 0.6);
 }
 
 body.correct {
@@ -15,7 +13,7 @@ body.correct {
 }
 
 body.wrong {
-  background-color: red;
+  background-color: rgba(255, 0, 0, 1);
 }
 
 h1 {
@@ -29,12 +27,28 @@ nav {
   display: flex;
   justify-content: space-around;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 23px;
-  color: rgba(170, 140, 150, 0.9);
+  font-size: 28px;
+}
+
+nav .timer-box {
+  box-shadow: rgb(26, 25, 25) 7px 7px;
+  background-color: grey;
+}
+
+#timer {
+  color: rgb(32, 29, 29);
+  /* padding: 5px; */
+}
+
+#high-scores {
+  color: rgb(32, 29, 29);
+  box-shadow: rgb(26, 25, 25) 7px 7px;
+  padding: 5px;
+  background-color: grey;
 }
 
 .container {
-  font-size: 36px;
+  font-size: 38px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -44,8 +58,39 @@ nav {
   height: 100vh;
 }
 
+#question {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 750;
+  color: rgba(95, 6, 43, 0.7);
+}
+
 .container button {
   font-size: 20px;
+  background-color: grey;
+  color: rgba(187, 69, 14, 0.7);
   width: 100%;
+  padding: 3px;
   text-align: left;
+  box-shadow: rgb(26, 25, 25) 3px 3px;
+}
+
+.questions {
+  padding: 10px;
+  border: black solid 1px;
+  background-color: whitesmoke;
+  box-shadow: rgb(26, 25, 25) 10px 10px;
+}
+
+.test-questions {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 750;
+  color: rgba(95, 6, 43, 0.7);
+}
+
+.start-btn {
+  margin-top: 15px;
+}
+
+.restart-btn {
+  margin-top: 15px;
 }
