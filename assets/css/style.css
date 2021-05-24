@@ -35,18 +35,19 @@ nav {
 }
 
 nav .timer-box {
+  margin-top: 15px;
   box-shadow: rgb(26, 25, 25) 7px 7px;
   border-radius: 5px;
   background-color: grey;
 }
 
-#timer {
+p #timer {
   color: rgb(32, 29, 29);
   /* padding: 5px; */
 }
 
 #high-scores {
-  /* width: 15%; */
+  margin-top: 15px;
   text-align: center;
   color: rgb(32, 29, 29);
   box-shadow: rgb(26, 25, 25) 7px 7px;
