@@ -130,6 +130,18 @@ p #timer {
 }
 
 @media screen and (max-width: 768px) {
+  body {
+    position: fixed;
+  }
+
+  body.correct {
+    background-color: green;
+  }
+
+  body.wrong {
+    background-color: red;
+  }
+
   nav {
     flex-wrap: wrap;
     align-items: baseline;
@@ -142,5 +154,11 @@ p #timer {
 
   #high-scores {
     margin: 10px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  body {
+    position: relative;
   }
 }
