@@ -8,7 +8,7 @@ var questionEl = document.getElementById("question");
 var startBtnEl = document.getElementById("start-btn");
 var restartBtnEl = document.getElementById("restart");
 var containerEl = document.getElementById("questions-box");
-var highScoresEl = document.getElementById("high-scores")
+var highScoresEl = document.getElementById("high-scores");
 var loadName = localStorage.getItem("Name");
 var loadScore = localStorage.getItem("Score");
 var currentQuestionIndex = 0;
@@ -60,15 +60,16 @@ function showNextQuestion() {
       return highScore();
     }
 
+    document.body.classList.remove("freeze")
     document.body.classList.remove("correct");
     document.body.classList.remove("wrong");
-    
+
     var currentQuestion = questionsArray[currentQuestionIndex];
     questionEl.className = "test-questions";
     questionEl.textContent = currentQuestion.question;
-    
+
     answerEl.innerHTML = "";
-    
+
     for (var i = 0; i < currentQuestion.answers.length; i++) {
       var button = document.createElement("button");
       button.addEventListener("click", checkAnswer);
@@ -80,8 +81,8 @@ function showNextQuestion() {
 }
 
 function highScore() {
-  document.body.classList.remove("correct")
-  document.body.classList.remove("wrong")
+  document.body.classList.remove("correct");
+  document.body.classList.remove("wrong");
   clearInterval(testTimer);
   alert("You got " + score + " questions correct!");
   initial = prompt("Enter your initials");
@@ -106,21 +107,21 @@ function checkAnswer(event) {
   if (selectedAnswer == answer) {
     score++;
     document.body.classList.add("correct");
-    event.target.className = "correct-color"
+    event.target.className = "correct-color";
   } else {
     timeLeft -= 20;
     document.body.classList.add("wrong");
-    event.target.className = "wrong-color"
+    event.target.className = "wrong-color";
   }
   // questionEl.classList.add("background-green")
   // setTimeout(function () {
-    //   document.body.classList.remove("correct");
-    //   document.body.classList.remove("wrong");
-    // }, 1000);
-    console.log(score);
-    
-    currentQuestionIndex++;
-    showNextQuestion();
+  //   document.body.classList.remove("correct");
+  //   document.body.classList.remove("wrong");
+  // }, 1000);
+  console.log(score);
+
+  currentQuestionIndex++;
+  showNextQuestion();
 }
 
 newHighScore();
@@ -131,7 +132,8 @@ startBtnEl.addEventListener("click", function () {
   startBtnEl.style.display = "none";
 });
 
-restartBtnEl.addEventListener("click", function () {
+restartBtnEl.addEventListener("click", function (event) {
+  document.body.classList.add("freeze")
   currentQuestionIndex = 0;
   timeLeft = 120;
   score = 0;
@@ -173,10 +175,10 @@ function saveScore() {
 
 function newHighScore() {
   if (loadName === null && loadScore === null) {
-    highScoresEl.style.display = "none"
+    highScoresEl.style.display = "none";
     return;
   }
   document.getElementById("high-scores").innerHTML =
     "Current High Score: " + loadName + " - " + loadScore;
-    highScoresEl.style.display = "block"
+  highScoresEl.style.display = "block";
 }

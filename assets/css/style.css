@@ -121,19 +121,25 @@ p #timer {
 }
 
 .correct {
-  cursor: wait; /* busy cursor feedback */
+  cursor: wait;
 }
 
 .correct * {
-  /* disable all mouse events on subElements */
   pointer-events: none;
 }
 
 .wrong {
-  cursor: wait; /* busy cursor feedback */
+  cursor: wait;
 }
 
 .wrong * {
-  /* disable all mouse events on subElements */
+  pointer-events: none;
+}
+
+.freeze {
+  cursor: wait;
+}
+
+.freeze * {
   pointer-events: none;
 }
