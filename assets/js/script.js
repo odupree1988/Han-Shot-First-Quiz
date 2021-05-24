@@ -7,6 +7,7 @@ var answerEl = document.getElementById("btn-answers");
 var questionEl = document.getElementById("question");
 var startBtnEl = document.getElementById("start-btn");
 var restartBtnEl = document.getElementById("restart");
+var containerEl = document.getElementById("questions-box");
 var loadName = localStorage.getItem("Name");
 var loadScore = localStorage.getItem("Score");
 var currentQuestionIndex = 0;
@@ -130,6 +131,8 @@ startBtnEl.addEventListener("click", function () {
 restartBtnEl.addEventListener("click", function () {
   currentQuestionIndex = 0;
   timeLeft = 120;
+  score = 0
+  containerEl.style.display = "block"
   restartBtnEl.style.display = "none";
   loadName = localStorage.getItem("Name");
   loadScore = localStorage.getItem("Score");
@@ -139,12 +142,18 @@ restartBtnEl.addEventListener("click", function () {
 });
 // run this timer once startQuiz is initiated
 
+function endGame() {
+  containerEl.style.display = "none"
+  restartBtnEl.style.display = "block";
+}
+
 function startTimer() {
   testTimer = setInterval(function () {
     if (timeLeft <= 0) {
       clearInterval(testTimer);
       highScore();
       document.getElementById("timer").innerHTML = "Time's Up!";
+      endGame();
     } else {
       document.getElementById("timer").innerHTML = timeLeft + " seconds";
     }
