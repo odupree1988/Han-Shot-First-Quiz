@@ -22,7 +22,7 @@ var questionsArray = [
   },
   {
     question:
-      "What is the name of the planet that Qui-Gon Jinn first discovers Anakin Skywalker?",
+      "What is the name of the planet that Qui-Gon Jinn first discovered Anakin Skywalker?",
     answers: ["Naboo", "Tatooine", "Mustafar", "Geonosis"],
     correctAnswer: 1,
   },
