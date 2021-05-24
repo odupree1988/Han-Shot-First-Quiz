@@ -128,3 +128,19 @@ p #timer {
 .freeze * {
   pointer-events: none;
 }
+
+@media screen and (max-width: 768px) {
+  nav {
+    flex-wrap: wrap;
+    align-items: baseline;
+  }
+
+  .questions {
+    width: fit-content;
+    flex-wrap: wrap;
+  }
+
+  #high-scores {
+    margin: 10px;
+  }
+}
