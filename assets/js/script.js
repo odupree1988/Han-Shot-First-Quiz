@@ -16,29 +16,36 @@ var timeLeft = 120;
 
 var questionsArray = [
   {
-    question: "What color is Luke Skywalkers Lightsaber?",
+    question: "What color is Luke Skywalkers lightsaber?",
     answers: ["Green", "Red", "Blue", "Purple"],
     correctAnswer: 0,
   },
   {
-    question: "What is the name of the planet that Qui-Gon first discovers Annakin Skywalker?",
+    question:
+      "What is the name of the planet that Qui-Gon Jinn first discovers Anakin Skywalker?",
     answers: ["Naboo", "Tatooine", "Mustafar", "Geonosis"],
     correctAnswer: 1,
   },
   {
-    question: "question3",
-    answers: ["answer1", "answer2", "answer3", "answer4"],
+    question:
+      "What are the creatures, living on Endor, that helped the Rebel’s to defeat the second Death Star?",
+    answers: ["Twi'leks", "Jawas", "Wookies", "Ewoks"],
     correctAnswer: 3,
   },
   {
-    question: "question4",
-    answers: ["answer1", "answer2", "answer3", "answer4"],
+    question: "Who blew up the first Death Star, and with what weapon?",
+    answers: [
+      "Princess Leia with a thermal detonator",
+      "Luke Skywalker with an X-Wing",
+      "Princess Leia with an X-Wing",
+      "Luke Skywalker with his Lightsaber",
+    ],
     correctAnswer: 1,
   },
   {
-    question: "question5",
-    answers: ["answer1", "answer2", "answer3", "answer4"],
-    correctAnswer: 2,
+    question: "Who shot first?",
+    answers: ["Han Solo", "Greedo"],
+    correctAnswer: 0,
   },
 ];
 
@@ -75,8 +82,8 @@ function highScore() {
   alert("You got " + score + " questions correct!");
   initial = prompt("Enter your initials");
   if (!initial) {
-    alert("You didn't enter your initials!")
-    highScore()
+    alert("You didn't enter your initials!");
+    highScore();
   } else {
     if (score > loadScore) {
       saveName();
@@ -89,17 +96,17 @@ function highScore() {
 }
 
 function checkAnswer(event) {
-  console.log(event)
+  console.log(event);
   var selectedAnswer = event.target.getAttribute("data-index");
   var answer = questionsArray[currentQuestionIndex].correctAnswer;
   if (selectedAnswer == answer) {
     score++;
     document.body.classList.add("correct");
-    event.target.style.backgroundColor = "green"
+    event.target.style.backgroundColor = "green";
   } else {
     timeLeft -= 20;
     document.body.classList.add("wrong");
-    event.target.style.backgroundColor = "red"
+    event.target.style.backgroundColor = "red";
   }
   // questionEl.classList.add("background-green")
   // setTimeout(function () {
